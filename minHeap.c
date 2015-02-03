@@ -11,7 +11,7 @@ static minHeap_t * newMinHeap() {
    return newHeap;
 }
 
-static void insertNode(minHeap_t * queue, huffmanNode_t * toInsert) {
+void insertNode(minHeap_t * queue, huffmanNode_t * toInsert) {
    int index = queue->index++;
    queue->nodes[index] = toInsert;
 
@@ -40,25 +40,6 @@ huffmanNode_t * removeNode(minHeap_t * queue) {
    int currentNodeI = 0;
    huffmanNode_t * tempNode;
     
-/*
-   for(;;) {  
-      if(queue->index < currentNodeI * 2 + 2) //no more child nodes
-         return toReturn;
-      else if(index = currentNodeI * 2 + 1)
-      {
-         if(queue->nodes[currentNodeI*2+1]->frequency < queue->nodes[currentNodeI]->frequency)
-         {
-            tempNode = queue->nodes[currentNodeI];
-            queue->nodes[currentNodeI] = queue->nodes[currentNodeI * 2 + 1];
-            queue->nodes[currentNodeI * 2 + 1] = tempNode;
-            currentNodeI = currentNodeI * 2 + 1;
-         }
-         else
-            break;
-      else if( 
-*/
-
- 
    while(((queue->index>currentNodeI*2+1)&&(queue->nodes[currentNodeI]->frequency>queue->nodes[currentNodeI*2+1]->frequency)) || 
          ((queue->index>currentNodeI*2+2)&&(queue->nodes[currentNodeI]->frequency>queue->nodes[currentNodeI*2+2]->frequency)))
    {

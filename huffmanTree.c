@@ -14,6 +14,7 @@ int main(int argc, char ** argv)
    FILE * inputFile;
    hashMap_t * frequencyTable, * codeLookupTable;
    minHeap_t * priorityQueue;
+   huffmanNode_t * huffmanTree;
 
 
    inputFile = fopen("testFile.txt", "r");
@@ -23,15 +24,15 @@ int main(int argc, char ** argv)
   
    codeLookupTable = newHashMap();
    priorityQueue = fillHeapWithFrequencyTable(frequencyTable);
-   printAndDeleteMinHeap(priorityQueue);   
-   
+ 
+   huffmanTree = generateHuffmanTree(priorityQueue);  
  
    fclose(inputFile);  
    return 1;
 }
 
 void populateFrequencyTable(FILE * inputFile, hashMap_t * frequencyTable) {
-   char buffer[BUFFER_SIZE] = {};
+   unsigned char buffer[BUFFER_SIZE] = {};
    int charsRead, i;
    
    do {
@@ -39,8 +40,19 @@ void populateFrequencyTable(FILE * inputFile, hashMap_t * frequencyTable) {
       for(i = 0; i < charsRead; i++)
       {
          int previousFrequency = get(buffer[i], frequencyTable);
-         put((int)buffer[i], MAX(previousFrequency + 1, 1), frequencyTable);
+         put(buffer[i], MAX(previousFrequency + 1, 1), frequencyTable);
       } 
    } while(charsRead > 0);
 }
 
+huffmanNode_t * generateHuffmanTree(minHeap_t * priorityQueue) {
+   while(priorityQueue->index > 1) 
+      insertNode(priorityQueue, newNodeFromChildren(removeNode(priorityQueue), removeNode(priorityQueue)));
+   return removeNode(priorityQueue);
+} 
+
+void populateCodingTable(hashMap_t * codingTable, huffmanNode_t * huffmanTree) {
+   huffmanNode_t * current = huffmanTree;
+//   if(!current.left)
+          
+}      

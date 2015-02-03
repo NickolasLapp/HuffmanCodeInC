@@ -12,4 +12,5 @@ typedef struct minHeap {
 void printAndDeleteMinHeap(minHeap_t * queue);
 huffmanNode_t * removeNode(minHeap_t * queue);
 minHeap_t * fillHeapWithFrequencyTable(hashMap_t * frequencyTable);
+void insertNode(minHeap_t * queue, huffmanNode_t * toInsert);
 #endif

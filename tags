@@ -4,38 +4,46 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
-BUFFER_SIZE	huffmanTree.c	7;"	d	file:
+BUFFER_SIZE	huffmanTree.c	8;"	d	file:
 CC	Makefile	/^CC = gcc$/;"	m
 CFLAGS	Makefile	/^CFLAGS  = -g -Wall$/;"	m
 HASH_MAP_H	hashMap.h	2;"	d
 HUFFMAN_NODE_H	huffmanNode.h	2;"	d
 HUFFMAN_TREE_H	huffmanTree.h	2;"	d
-MAX	huffmanTree.c	8;"	d	file:
+MAX	huffmanTree.c	9;"	d	file:
 MIN_HEAP_H	minHeap.h	2;"	d
 STD_MAP_SIZE	hashMap.c	4;"	d	file:
 STD_MAP_SIZE	minHeap.h	3;"	d
 basicHash	hashMap.c	/^unsigned char basicHash(unsigned char key) {$/;"	f
 bucket	hashMap.h	/^   hashNode_t ** bucket;$/;"	m	struct:hashMap
-data	huffmanNode.h	/^   char data;$/;"	m	struct:node
-fillHeapWithFrequencyTable	minHeap.c	/^minHeap_t * fillHeapWithFrequencyTable(hashMap_t frequencyTable)$/;"	f
-frequency	huffmanNode.h	/^   int frequency : 1; $/;"	m	struct:node
+fillHeapWithFrequencyTable	minHeap.c	/^minHeap_t * fillHeapWithFrequencyTable(hashMap_t * frequencyTable) {$/;"	f
+frequency	huffmanNode.h	/^   int frequency; $/;"	m	struct:node
+generateHuffmanTree	huffmanTree.c	/^huffmanNode_t * generateHuffmanTree(minHeap_t * priorityQueue) {$/;"	f
 get	hashMap.c	/^int get(unsigned char key, hashMap_t * map) {$/;"	f
 hashMap	hashMap.h	/^typedef struct hashMap$/;"	s
 hashMap_t	hashMap.h	/^} hashMap_t;$/;"	t	typeref:struct:hashMap
 hashNode	hashMap.h	/^typedef struct hashNode$/;"	s
 hashNode_t	hashMap.h	/^} hashNode_t;$/;"	t	typeref:struct:hashNode
+huffmanNode_t	huffmanNode.h	/^} huffmanNode_t;$/;"	t	typeref:struct:node
+index	minHeap.h	/^   int index;$/;"	m	struct:minHeap
+insertNode	minHeap.c	/^void insertNode(minHeap_t * queue, huffmanNode_t * toInsert) {$/;"	f
 key	hashMap.h	/^   unsigned char key;$/;"	m	struct:hashNode
+key	huffmanNode.h	/^   unsigned char key;$/;"	m	struct:node
 left	huffmanNode.h	/^   struct node * left;$/;"	m	struct:node	typeref:struct:node::node
 main	huffmanTree.c	/^int main(int argc, char ** argv)$/;"	f
+minHeap	minHeap.h	/^typedef struct minHeap {$/;"	s
+minHeap_t	minHeap.h	/^} minHeap_t;   $/;"	t	typeref:struct:minHeap
 newHashMap	hashMap.c	/^hashMap_t * newHashMap() {$/;"	f
 newHashNode	hashMap.c	/^hashNode_t * newHashNode(unsigned char key, int value) {$/;"	f
-newMinHeap	minHeap.c	/^static minHeap_t * newMinHeap()$/;"	f	file:
-newNodeFromChildren	huffmanNode.c	/^node_t * newNodeFromChildren(node_t * leftChild, node_t * rightChild) {$/;"	f
-newNodeFromData	huffmanNode.c	/^node_t * newNodeFromData(int frequency, char data) {$/;"	f
+newMinHeap	minHeap.c	/^static minHeap_t * newMinHeap() {$/;"	f	file:
+newNodeFromChildren	huffmanNode.c	/^huffmanNode_t * newNodeFromChildren(huffmanNode_t * leftChild, huffmanNode_t * rightChild) {$/;"	f
+newNodeFromData	huffmanNode.c	/^huffmanNode_t * newNodeFromData(unsigned char key, int frequency) {$/;"	f
 node	huffmanNode.h	/^typedef struct node$/;"	s
-node_t	huffmanNode.h	/^} node_t;$/;"	t	typeref:struct:node
+nodes	minHeap.h	/^   huffmanNode_t ** nodes; $/;"	m	struct:minHeap
 populateFrequencyTable	huffmanTree.c	/^void populateFrequencyTable(FILE * inputFile, hashMap_t * frequencyTable) {$/;"	f
 print	hashMap.c	/^void print(hashMap_t * map) {$/;"	f
+printAndDeleteMinHeap	minHeap.c	/^void printAndDeleteMinHeap(minHeap_t * queue)$/;"	f
 put	hashMap.c	/^void put(unsigned char key, int value, hashMap_t * map) {$/;"	f
+removeNode	minHeap.c	/^huffmanNode_t * removeNode(minHeap_t * queue) {$/;"	f
 right	huffmanNode.h	/^   struct node * right;$/;"	m	struct:node	typeref:struct:node::node
 value	hashMap.h	/^   int value;$/;"	m	struct:hashNode
