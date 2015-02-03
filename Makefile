@@ -13,7 +13,7 @@ CFLAGS  = -g -Wall
 # you can name this target entry anything, but "default" or "all"
 # are the most commonly used names by convention
 #
-default: huffmanTree 
+default: huffmanTree.out 
 
 # To create the executable file count we need the object files
 #
