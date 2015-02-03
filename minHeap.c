@@ -26,33 +26,61 @@ static void insertNode(minHeap_t * queue, huffmanNode_t * toInsert) {
 void printAndDeleteMinHeap(minHeap_t * queue)
 {
    huffmanNode_t * popped;
-   while(popped = removeNode(queue))
-      printf("Removed Key: %c\tWith Frequency: %d", popped->key, popped->frequency);
+   while((queue->index >= 1) && (popped = removeNode(queue)))
+      printf("Removed Key: %c\tWith Frequency: %d\n", popped->key, popped->frequency);
 }
 
 huffmanNode_t * removeNode(minHeap_t * queue) {
-   huffmanNode_t * toReturn = queue->nodes[0];
-   if(!toReturn)
-      return NULL; 
-   queue->nodes[0] = queue->nodes[queue->index--];
-   int start = 0;
+   huffmanNode_t * toReturn = newNodeFromData(queue->nodes[0]->key, queue->nodes[0]->frequency);
+   queue->index--; 
+   queue->nodes[0] = queue->nodes[queue->index];
+   
+   queue->nodes[queue->index] = NULL; //this will cause meory leaks. Address later
+   
+   int currentNodeI = 0;
    huffmanNode_t * tempNode;
+    
+/*
+   for(;;) {  
+      if(queue->index < currentNodeI * 2 + 2) //no more child nodes
+         return toReturn;
+      else if(index = currentNodeI * 2 + 1)
+      {
+         if(queue->nodes[currentNodeI*2+1]->frequency < queue->nodes[currentNodeI]->frequency)
+         {
+            tempNode = queue->nodes[currentNodeI];
+            queue->nodes[currentNodeI] = queue->nodes[currentNodeI * 2 + 1];
+            queue->nodes[currentNodeI * 2 + 1] = tempNode;
+            currentNodeI = currentNodeI * 2 + 1;
+         }
+         else
+            break;
+      else if( 
+*/
 
  
-   while(start * 2 + 1 <= queue->index && (queue->nodes[start]->frequency >  queue->nodes[start * 2 +1]->frequency || 
-               queue->nodes[start]->frequency > queue->nodes[start * 2 + 2]->frequency))
-   {  
-      if(queue->nodes[start * 2 + 1]->frequency < queue->nodes[start*2+2]->frequency) { //use *2 + 1
-         tempNode = queue->nodes[start*2+1];
-         queue->nodes[start*2+1] = queue->nodes[start];
-         queue->nodes[start] = tempNode; 
-         start = start * 2 + 1; 
+   while(((queue->index>currentNodeI*2+1)&&(queue->nodes[currentNodeI]->frequency>queue->nodes[currentNodeI*2+1]->frequency)) || 
+         ((queue->index>currentNodeI*2+2)&&(queue->nodes[currentNodeI]->frequency>queue->nodes[currentNodeI*2+2]->frequency)))
+   {
+      if(currentNodeI*2+2 < queue->index) { //both defined, so safe to use either  
+         if(queue->nodes[currentNodeI*2+1]->frequency < queue->nodes[currentNodeI*2+2]->frequency) { //use *2 + 1
+            tempNode = queue->nodes[currentNodeI*2+1];
+            queue->nodes[currentNodeI*2+1] = queue->nodes[currentNodeI];
+            queue->nodes[currentNodeI] = tempNode; 
+            currentNodeI = currentNodeI * 2 + 1; 
+         }
+         else {
+            tempNode = queue->nodes[currentNodeI*2+2];
+            queue->nodes[currentNodeI*2+2] = queue->nodes[currentNodeI];
+            queue->nodes[currentNodeI] = tempNode;
+            currentNodeI = currentNodeI * 2 + 2; 
+         }
       }
-      else {
-         tempNode = queue->nodes[start*2+2];
-         queue->nodes[start*2+2] = queue->nodes[start];
-         queue->nodes[start] = tempNode;
-         start = start * 2 + 2; 
+      else { //only the second defined, must be the closer child 
+         tempNode = queue->nodes[currentNodeI*2+1];
+         queue->nodes[currentNodeI*2+1] = queue->nodes[currentNodeI];
+         queue->nodes[currentNodeI] = tempNode; 
+         currentNodeI = currentNodeI * 2 + 1; 
       } 
    }
    return toReturn;

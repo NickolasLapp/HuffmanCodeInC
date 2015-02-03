@@ -17,8 +17,8 @@ default: huffmanTree.out
 
 # To create the executable file count we need the object files
 #
-huffmanTree:  huffmanTree.o hashMap.o huffmanNode.o minHeap.o 
-	$(CC) $(CFLAGS) -o huffmanTree huffmanTree.o hashMap.o huffmanNode.o minHeap.o
+huffmanTree.out:  huffmanTree.o hashMap.o huffmanNode.o minHeap.o 
+	$(CC) $(CFLAGS) -o huffmanTree.out huffmanTree.o hashMap.o huffmanNode.o minHeap.o
 
 huffmanTree.o:  huffmanTree.c hashMap.h huffmanNode.h minHeap.h 
 	$(CC) $(CFLAGS) -c huffmanTree.c
@@ -37,4 +37,4 @@ minHeap.o: minHeap.c minHeap.h
 # files and *~ backup files:
 #
 clean: 
-	$(RM) huffmanTree *.o *~
+	$(RM) huffmanTree *.o *~ *.out
