@@ -1,0 +1,41 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+BUFFER_SIZE	huffmanTree.c	7;"	d	file:
+CC	Makefile	/^CC = gcc$/;"	m
+CFLAGS	Makefile	/^CFLAGS  = -g -Wall$/;"	m
+HASH_MAP_H	hashMap.h	2;"	d
+HUFFMAN_NODE_H	huffmanNode.h	2;"	d
+HUFFMAN_TREE_H	huffmanTree.h	2;"	d
+MAX	huffmanTree.c	8;"	d	file:
+MIN_HEAP_H	minHeap.h	2;"	d
+STD_MAP_SIZE	hashMap.c	4;"	d	file:
+STD_MAP_SIZE	minHeap.h	3;"	d
+basicHash	hashMap.c	/^unsigned char basicHash(unsigned char key) {$/;"	f
+bucket	hashMap.h	/^   hashNode_t ** bucket;$/;"	m	struct:hashMap
+data	huffmanNode.h	/^   char data;$/;"	m	struct:node
+fillHeapWithFrequencyTable	minHeap.c	/^minHeap_t * fillHeapWithFrequencyTable(hashMap_t frequencyTable)$/;"	f
+frequency	huffmanNode.h	/^   int frequency : 1; $/;"	m	struct:node
+get	hashMap.c	/^int get(unsigned char key, hashMap_t * map) {$/;"	f
+hashMap	hashMap.h	/^typedef struct hashMap$/;"	s
+hashMap_t	hashMap.h	/^} hashMap_t;$/;"	t	typeref:struct:hashMap
+hashNode	hashMap.h	/^typedef struct hashNode$/;"	s
+hashNode_t	hashMap.h	/^} hashNode_t;$/;"	t	typeref:struct:hashNode
+key	hashMap.h	/^   unsigned char key;$/;"	m	struct:hashNode
+left	huffmanNode.h	/^   struct node * left;$/;"	m	struct:node	typeref:struct:node::node
+main	huffmanTree.c	/^int main(int argc, char ** argv)$/;"	f
+newHashMap	hashMap.c	/^hashMap_t * newHashMap() {$/;"	f
+newHashNode	hashMap.c	/^hashNode_t * newHashNode(unsigned char key, int value) {$/;"	f
+newMinHeap	minHeap.c	/^static minHeap_t * newMinHeap()$/;"	f	file:
+newNodeFromChildren	huffmanNode.c	/^node_t * newNodeFromChildren(node_t * leftChild, node_t * rightChild) {$/;"	f
+newNodeFromData	huffmanNode.c	/^node_t * newNodeFromData(int frequency, char data) {$/;"	f
+node	huffmanNode.h	/^typedef struct node$/;"	s
+node_t	huffmanNode.h	/^} node_t;$/;"	t	typeref:struct:node
+populateFrequencyTable	huffmanTree.c	/^void populateFrequencyTable(FILE * inputFile, hashMap_t * frequencyTable) {$/;"	f
+print	hashMap.c	/^void print(hashMap_t * map) {$/;"	f
+put	hashMap.c	/^void put(unsigned char key, int value, hashMap_t * map) {$/;"	f
+right	huffmanNode.h	/^   struct node * right;$/;"	m	struct:node	typeref:struct:node::node
+value	hashMap.h	/^   int value;$/;"	m	struct:hashNode
