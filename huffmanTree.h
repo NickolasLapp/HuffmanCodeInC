@@ -4,6 +4,6 @@
 #include "minHeap.h"
 
 void populateFrequencyTable();
-huffmanNode_t * generateHuffmanTree(minHeap_t * priorityQueue);  
-
+huffmanNode_t * generateHuffmanTree(minHeap_t * priorityQueue);
+void populateCodingTable(hashMap_t * codingTable, huffmanNode_t * node, int code, int size);
 #endif

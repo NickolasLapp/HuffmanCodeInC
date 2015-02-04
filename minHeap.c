@@ -31,7 +31,9 @@ void printAndDeleteMinHeap(minHeap_t * queue)
 }
 
 huffmanNode_t * removeNode(minHeap_t * queue) {
-   huffmanNode_t * toReturn = newNodeFromData(queue->nodes[0]->key, queue->nodes[0]->frequency);
+//   huffmanNode_t * toReturn = newNodeFromData(queue->nodes[0]->key, queue->nodes[0]->frequency);
+
+   huffmanNode_t * toReturn = queue->nodes[0];
    queue->index--; 
    queue->nodes[0] = queue->nodes[queue->index];
    
