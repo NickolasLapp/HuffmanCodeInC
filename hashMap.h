@@ -23,4 +23,5 @@ void printBinary(hashMap_t * map);
 int get(unsigned char key, hashMap_t * map);
 void setCodeSize(unsigned char key, int size, hashMap_t * map);
 int getCodeSize(unsigned char key, hashMap_t * map);
+hashNode_t * getHashNode(unsigned char key, hashMap_t * map);
 #endif

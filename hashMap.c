@@ -57,7 +57,12 @@ int get(unsigned char key, hashMap_t * map) {
       return found->value;
    return -1; //not found
 }
-
+hashNode_t * getHashNode(unsigned char key, hashMap_t * map) {
+   hashNode_t * found = map->bucket[basicHash(key)];
+   if(found)
+      return found;
+   return NULL; //not found
+}
 
 void setCodeSize(unsigned char key, int size, hashMap_t * map) {
    map->sizeArray[basicHash(key)] = size;
