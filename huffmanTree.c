@@ -9,7 +9,7 @@
 #define MAX(a, b) a > b ? a : b
 
 static void encodeFile(FILE * inputFile,FILE * outputCodedFile, hashMap_t * codeLookupTable);  
-static unsigned int setZeroethBit(unsigned int writeTo, int writeFrom, char whichBit); 
+static unsigned int setKthBit(char write, int code, int whichBit);
 
 int main(int argc, char ** argv)
 {
@@ -17,7 +17,6 @@ int main(int argc, char ** argv)
    hashMap_t * frequencyTable, * codeLookupTable;
    minHeap_t * priorityQueue;
    huffmanNode_t * huffmanTree;
-
 
    inputFile = fopen("testFile.txt", "r");
    frequencyTable = newHashMap();
@@ -37,7 +36,13 @@ int main(int argc, char ** argv)
    outputCodedFile = fopen("outputCodedFile", "w");
    encodeFile(inputFile, outputCodedFile, codeLookupTable);  
    
-   fclose(inputFile);  
+   fclose(inputFile); 
+   fclose(outputCodedFile);
+
+   outputCodedFile = fopen("outputCodedFile", "r"); 
+
+   printFileFromCodedFile(outputCodedFile, huffmanTree);    
+
    fclose(outputCodedFile);
    return 1;
 }
@@ -78,32 +83,29 @@ void populateCodingTable(hashMap_t * codingTable, huffmanNode_t * node, int code
 
 static void encodeFile(FILE * inputFile,FILE * outputCodedFile, hashMap_t * codeLookupTable) {
    unsigned char buffer[BUFFER_SIZE] = {};
-   int charsRead, i, j;
-   
+   int charsRead, buffIndex, codeIndex;
+   char toWrite = 0; 
+   int toWriteIndex = sizeof(char) * 8 - 1;  
    do {
-      char numBitsPut = 0; 
       charsRead = fread(buffer, sizeof(char), BUFFER_SIZE, inputFile);
-      for(i = 0; i < charsRead; i++) {
-         unsigned int toWrite = 0;
-         hashNode_t * current = getHashNode(buffer[i], codeLookupTable);   
-         int numBits = getCodeSize(current->key, codeLookupTable); 
-         int code  = current->value;
-         for(j = 0; j < numBits; j++) {
-            if(numBitsPut == sizeof(toWrite) * 8-1) {
+      for (buffIndex = 0; buffIndex < charsRead; buffIndex++) {
+         int code = getHashNode(buffer[buffIndex], codeLookupTable)->value;
+         char size = getCodeSize(buffer[buffIndex], codeLookupTable);
+         for(codeIndex = size-1; codeIndex >=0; codeIndex--) {
+            if(toWriteIndex < 0) {
                fprintf(outputCodedFile, "%c", toWrite);
+               toWriteIndex = sizeof(toWrite) * 8 - 1;
                toWrite = 0;
             }
-            toWrite = setZeroethBit(toWrite<<1, code, j);
-            numBitsPut++; 
-         }
+            toWrite = setKthBit(toWrite, code & (1<<codeIndex), toWriteIndex--);
+         } 
       }
    } while(charsRead > 0);
 }
 
-static unsigned int setZeroethBit(unsigned int writeTo, int writeFrom, char whichBit) {
-   unsigned int toSet = ((writeFrom & (1<<whichBit)) != 0);
-   if(!toSet)
-      return writeTo;
+static unsigned int setKthBit(char write, int code, int whichBit) {
+   if(code)
+      return write | (1<<whichBit);
    else
-      return writeTo | (1<<whichBit);
+      return write;
 }

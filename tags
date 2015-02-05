@@ -4,6 +4,7 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+BUFFER_SIZE	huffmanNode.c	3;"	d	file:
 BUFFER_SIZE	huffmanTree.c	8;"	d	file:
 BYTETOBINARY	hashMap.c	5;"	d	file:
 BYTETOBINARYPATTERN	hashMap.c	4;"	d	file:
@@ -51,10 +52,11 @@ populateFrequencyTable	huffmanTree.c	/^void populateFrequencyTable(FILE * inputF
 print	hashMap.c	/^void print(hashMap_t * map) {$/;"	f
 printAndDeleteMinHeap	minHeap.c	/^void printAndDeleteMinHeap(minHeap_t * queue)$/;"	f
 printBinary	hashMap.c	/^void printBinary(hashMap_t * map) {$/;"	f
+printFileFromCodedFile	huffmanNode.c	/^void printFileFromCodedFile(FILE * outputCodedFile, huffmanNode_t *  huffmanTree) {$/;"	f
 put	hashMap.c	/^void put(unsigned char key, int value, hashMap_t * map) {$/;"	f
 removeNode	minHeap.c	/^huffmanNode_t * removeNode(minHeap_t * queue) {$/;"	f
 right	huffmanNode.h	/^   struct node * right;$/;"	m	struct:node	typeref:struct:node::node
 setCodeSize	hashMap.c	/^void setCodeSize(unsigned char key, int size, hashMap_t * map) {$/;"	f
-setZeroethBit	huffmanTree.c	/^static unsigned int setZeroethBit(unsigned int writeTo, int writeFrom, char whichBit) {$/;"	f	file:
+setKthBit	huffmanTree.c	/^static unsigned int setKthBit(char write, int code, int whichBit) {$/;"	f	file:
 sizeArray	hashMap.h	/^   int * sizeArray;$/;"	m	struct:hashMap
 value	hashMap.h	/^   int value;$/;"	m	struct:hashNode
